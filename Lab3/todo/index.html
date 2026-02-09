@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shishl0's Fashioned To-Do</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="bg-glow"></div>
+
+    <header class="header">
+      <div class="header__inner">
+        <p class="brand">Shishl0’s Fashioned To-Do</p>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="card">
+        <h1 class="title">To-Do List</h1>
+
+        <div class="input">
+          <input
+            type="text"
+            id="taskInput"
+            placeholder="Write anything on your mind..."
+            autocomplete="off"
+          />
+          <button class="btn btn-primary" onclick="addTask()">
+            <span>Add</span>
+          </button>
+        </div>
+
+        <div class="tasks">
+          <ul id="taskList"></ul>
+        </div>
+
+        <div class="hint">
+          <span>Tip:</span> Press <kbd>Enter</kbd> to add. <kbd>Esc</kbd> to clear.
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
