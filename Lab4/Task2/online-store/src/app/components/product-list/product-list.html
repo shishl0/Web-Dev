@@ -1,0 +1,71 @@
+<div class="page-shell">
+  <header class="hero">
+    <div class="hero__text">
+      <p class="hero__eyebrow">Online Store</p>
+      <h1 class="hero__title">Kaspi RAM Showcase</h1>
+      <p class="hero__subtitle">
+        Real products parsed via server proxy
+      </p>
+    </div>
+
+    <div class="hero__toolbar" hlmCard>
+      <div class="toolbar-row">
+        <label for="count" class="toolbar-label">Products (N)</label>
+        <input
+          id="count"
+          hlmInput
+          type="number"
+          min="1"
+          max="50"
+          [disabled]="loading()"
+          [(ngModel)]="count"
+        />
+      </div>
+
+      <div class="toolbar-actions">
+        <button hlmBtn type="button" (click)="loadFromKaspi()" [disabled]="loading()">
+          {{ loading() ? 'Loading...' : 'Load from Kaspi' }}
+        </button>
+        <button hlmBtn variant="secondary" type="button" (click)="useCache()" [disabled]="loading()">
+          Use cached
+        </button>
+        <button hlmBtn variant="outline" type="button" (click)="clearCache()" [disabled]="loading()">
+          Clear cache
+        </button>
+      </div>
+
+      <div class="toolbar-meta">
+        <span *ngIf="lastUpdatedISO(); else noUpdate">
+          Last updated: {{ lastUpdatedISO() | date: 'medium' }}
+        </span>
+        <ng-template #noUpdate>
+          <span>No data loaded yet.</span>
+        </ng-template>
+        <span *ngIf="hasValidCache()" class="cache-badge">Cache ready</span>
+      </div>
+    </div>
+  </header>
+
+  <p *ngIf="error()" class="error-banner">{{ error() }}</p>
+
+  <section class="product-grid" [@listStagger]="products().length">
+    <ng-container *ngIf="loading(); else productsContent">
+      <article *ngFor="let idx of skeletonCards()" class="skeleton-card product-tile" hlmCard>
+        <div hlmSkeleton class="skeleton-image"></div>
+        <div class="skeleton-lines">
+          <div hlmSkeleton class="skeleton-line w-10/12"></div>
+          <div hlmSkeleton class="skeleton-line w-7/12"></div>
+          <div hlmSkeleton class="skeleton-line w-9/12"></div>
+        </div>
+      </article>
+    </ng-container>
+
+    <ng-template #productsContent>
+      <app-product-card
+        *ngFor="let product of products(); trackBy: trackByProductId"
+        class="product-tile"
+        [product]="product"
+      ></app-product-card>
+    </ng-template>
+  </section>
+</div>
