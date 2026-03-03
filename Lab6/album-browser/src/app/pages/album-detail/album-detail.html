@@ -1,0 +1,22 @@
+<section class="detail-page">
+  <div *ngIf="loading" class="state info">Loading album...</div>
+  <div *ngIf="!loading && error" class="state error">{{ error }}</div>
+
+  <article *ngIf="!loading && album" class="card">
+    <header class="meta">
+      <h1>Album #{{ album.id }}</h1>
+      <p>User ID: {{ album.userId }}</p>
+    </header>
+
+    <label class="label" for="title">Title</label>
+    <input id="title" class="input" [(ngModel)]="newTitle" />
+
+    <div class="row">
+      <button class="btn" type="button" (click)="save()" [disabled]="saving">
+        {{ saving ? 'Saving...' : 'Save' }}
+      </button>
+      <button class="btn" type="button" (click)="viewPhotos()">View Photos</button>
+      <button class="btn ghost" type="button" (click)="back()">Back</button>
+    </div>
+  </article>
+</section>

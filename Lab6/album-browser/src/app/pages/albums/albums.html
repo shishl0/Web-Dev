@@ -1,0 +1,23 @@
+<section class="albums-page">
+  <header class="page-head">
+    <h1>Albums</h1>
+    <p>Click an album to open details. Delete removes the album from this UI list.</p>
+  </header>
+
+  <div *ngIf="loading" class="state info">Loading albums...</div>
+  <div *ngIf="!loading && error" class="state error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error && albums.length === 0" class="state empty">
+    No albums to display.
+  </div>
+
+  <ul *ngIf="!loading && !error && albums.length > 0" class="list">
+    <li class="item" *ngFor="let a of albums" (click)="open(a.id)">
+      <div class="title">
+        <span class="id">#{{ a.id }}</span>
+        <span>{{ a.title }}</span>
+      </div>
+      <button class="danger" type="button" (click)="delete(a.id, $event)">Delete</button>
+    </li>
+  </ul>
+</section>

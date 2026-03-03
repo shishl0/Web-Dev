@@ -1,0 +1,89 @@
+.card {
+  background: #ffffff;
+  border: 1px solid #dbe4ee;
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.meta h1 {
+  margin-bottom: 0.25rem;
+}
+
+.meta p {
+  margin-top: 0;
+  color: #64748b;
+}
+
+.label {
+  display: block;
+  margin-top: 0.8rem;
+  margin-bottom: 0.45rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.6rem 0.7rem;
+  font: inherit;
+}
+
+.input:focus {
+  outline: 2px solid #bfdbfe;
+  border-color: #93c5fd;
+}
+
+.row {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.55rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #0f172a;
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #1e293b;
+}
+
+.btn.ghost {
+  border-color: #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+}
+
+.btn.ghost:hover {
+  background: #f8fafc;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.state {
+  padding: 0.9rem;
+  border-radius: 12px;
+}
+
+.info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+}
+
+.error {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+}

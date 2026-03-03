@@ -1,0 +1,19 @@
+<section class="photos-page">
+  <header class="page-head">
+    <h1>Album #{{ albumId }} Photos</h1>
+  </header>
+
+  <div *ngIf="loading" class="state info">Loading photos...</div>
+  <div *ngIf="!loading && error" class="state error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error && photos.length === 0" class="state empty">No photos found.</div>
+
+  <div *ngIf="!loading && !error && photos.length > 0" class="grid">
+    <figure class="photo" *ngFor="let p of photos" [title]="p.title">
+      <img [src]="p.thumbnailUrl" [alt]="p.title" loading="lazy" />
+      <figcaption class="caption">{{ p.title }}</figcaption>
+    </figure>
+  </div>
+
+  <button class="btn ghost" type="button" (click)="back()">Back</button>
+</section>

@@ -1,0 +1,73 @@
+.page-head h1 {
+  margin-bottom: 0.25rem;
+}
+
+.grid {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 0.7rem;
+}
+
+.photo {
+  margin: 0;
+  border: 1px solid #dbe4ee;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 0.55rem;
+}
+
+.photo img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 9px;
+  display: block;
+}
+
+.caption {
+  margin-top: 0.45rem;
+  color: #334155;
+  font-size: 0.82rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.btn {
+  padding: 0.55rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #f8fafc;
+}
+
+.state {
+  padding: 0.9rem;
+  border-radius: 12px;
+}
+
+.info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+}
+
+.error {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+}
+
+.empty {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  color: #475569;
+}

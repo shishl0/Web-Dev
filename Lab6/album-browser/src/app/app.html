@@ -1,0 +1,14 @@
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">Album Browser</div>
+    <nav class="nav" aria-label="Main navigation">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+      <a routerLink="/albums" routerLinkActive="active">Albums</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
