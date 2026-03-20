@@ -1,0 +1,150 @@
+:host {
+  display: block;
+}
+
+.product-card {
+  background: linear-gradient(155deg, rgba(45, 14, 14, 0.92), rgba(62, 18, 18, 0.7));
+  border-color: rgba(248, 113, 113, 0.2);
+  backdrop-filter: blur(2px);
+  min-height: 100%;
+}
+
+.image-wrap {
+  display: block;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  margin: 0 1rem;
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  background: radial-gradient(circle at top right, rgba(248, 113, 113, 0.2), rgba(35, 10, 10, 0.6));
+}
+
+.main-img {
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+  display: block;
+}
+
+.thumbs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  margin-top: 0.65rem;
+  overflow-x: auto;
+}
+
+.thumb {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  background: rgba(47, 14, 14, 0.55);
+  border-radius: 0.72rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb:hover,
+.thumb--active {
+  border-color: rgba(248, 113, 113, 0.98);
+  transform: translateY(-2px);
+}
+
+.product-head {
+  margin-top: 0.35rem;
+}
+
+.product-title {
+  line-height: 1.25;
+  font-size: 1.02rem;
+}
+
+.product-description {
+  margin-top: 0.35rem;
+  color: color-mix(in oklab, var(--foreground) 74%, #fecaca 26%);
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.price {
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.star {
+  color: rgba(251, 191, 36, 0.34);
+  font-size: 0.93rem;
+}
+
+.star--filled {
+  color: rgb(251, 191, 36);
+}
+
+.rating-num {
+  margin-left: 0.25rem;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: rgb(253, 224, 71);
+}
+
+.actions {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  width: 100%;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-position 0.2s ease, border-color 0.2s ease;
+}
+
+.wow-btn {
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(
+    120deg,
+    rgba(220, 38, 38, 0.95),
+    rgba(239, 68, 68, 0.95),
+    rgba(220, 38, 38, 0.95)
+  );
+  background-size: 220% 220%;
+}
+
+.wow-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: translateX(-110%);
+  transition: transform 0.45s ease;
+}
+
+.wow-btn:hover {
+  background-position: 90% 0;
+  box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.75), 0 0 25px rgba(248, 113, 113, 0.45);
+}
+
+.wow-btn:hover::before {
+  transform: translateX(115%);
+}

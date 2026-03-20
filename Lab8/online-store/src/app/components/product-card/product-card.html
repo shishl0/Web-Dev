@@ -1,0 +1,78 @@
+<article hlmCard class="product-card" appMotionHover>
+  <a class="image-wrap" [href]="product.link" target="_blank" rel="noopener noreferrer">
+    <img
+      class="main-img"
+      [@imageSwap]="selectedImage()"
+      [src]="selectedImage()"
+      [alt]="product.name"
+      loading="lazy"
+    />
+  </a>
+
+  <div class="thumbs" *ngIf="product.images.length > 1">
+    <button
+      *ngFor="let image of product.images.slice(0, 5)"
+      type="button"
+      class="thumb"
+      [class.thumb--active]="selectedImage() === image"
+      [attr.aria-label]="'Select image for ' + product.name"
+      (click)="selectImage(image)"
+    >
+      <img [src]="image" [alt]="product.name" loading="lazy" />
+    </button>
+  </div>
+
+  <div hlmCardHeader class="product-head">
+    <h3 hlmCardTitle class="product-title">{{ product.name }}</h3>
+    <p hlmCardDescription class="product-description">{{ product.description }}</p>
+  </div>
+
+  <div hlmCardContent class="product-meta">
+    <div class="price">{{ formatPrice(product.price) }} ₸</div>
+    <div class="rating" [attr.aria-label]="'Rating ' + roundedRating()">
+      <span
+        *ngFor="let filled of stars"
+        [class]="filled ? 'star star--filled' : 'star'"
+        aria-hidden="true"
+      >
+        ★
+      </span>
+      <span class="rating-num">{{ roundedRating() }}</span>
+    </div>
+  </div>
+
+  <div hlmCardFooter class="actions">
+    <a
+      hlmBtn
+      class="action-btn wow-btn"
+      [href]="product.link"
+      target="_blank"
+      rel="noopener noreferrer"
+      appMotionHover
+    >
+      Open in Kaspi
+    </a>
+    <a
+      hlmBtn
+      variant="secondary"
+      class="action-btn"
+      [href]="whatsappShareUrl()"
+      target="_blank"
+      rel="noopener noreferrer"
+      appMotionHover
+    >
+      Share WhatsApp
+    </a>
+    <a
+      hlmBtn
+      variant="outline"
+      class="action-btn"
+      [href]="telegramShareUrl()"
+      target="_blank"
+      rel="noopener noreferrer"
+      appMotionHover
+    >
+      Share Telegram
+    </a>
+  </div>
+</article>

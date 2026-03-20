@@ -1,0 +1,92 @@
+<div class="page-shell">
+  <header class="hero">
+    <div class="hero__text">
+      <p class="hero__eyebrow">Online Store</p>
+      <h1 class="hero__title">Kaspi Hardware Catalog</h1>
+      <p class="hero__subtitle">
+        Динамические категории из Kaspi с автодогрузкой товаров
+      </p>
+    </div>
+
+    <div class="hero__toolbar" hlmCard>
+      <div class="toolbar-row categories-row">
+        <label class="toolbar-label">Категории</label>
+        <div class="category-chips">
+          <button
+            *ngFor="let category of categories"
+            hlmBtn
+            variant="secondary"
+            type="button"
+            [disabled]="isBusy()"
+            [class.category-chip--active]="activeCategory().key === category.key"
+            (click)="selectCategory(category)"
+          >
+            {{ category.label }}
+          </button>
+        </div>
+      </div>
+
+      <div class="toolbar-actions">
+        <button hlmBtn type="button" (click)="loadFromKaspi()" [disabled]="isBusy()">
+          {{ isBusy() ? 'Loading...' : 'Load from Kaspi' }}
+        </button>
+        <button hlmBtn variant="secondary" type="button" (click)="useCache()" [disabled]="isBusy()">
+          Use cached
+        </button>
+        <button hlmBtn variant="outline" type="button" (click)="clearCache()" [disabled]="isBusy()">
+          Clear cache
+        </button>
+      </div>
+
+      <div class="toolbar-meta">
+        <span *ngIf="lastUpdatedISO(); else noUpdate">
+          Last updated: {{ lastUpdatedISO() | date: 'medium' }}
+        </span>
+        <ng-template #noUpdate>
+          <span>No data loaded yet.</span>
+        </ng-template>
+        <span *ngIf="products().length > 0">Page: {{ currentPage() }}</span>
+        <span *ngIf="hasValidCache()" class="cache-badge">Cache ready</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+    <ol>
+      <li *ngFor="let crumb of breadcrumbs(); let last = last" [class.is-current]="last">
+        <span>{{ crumb }}</span>
+      </li>
+    </ol>
+  </nav>
+
+  <p *ngIf="error()" class="error-banner">{{ error() }}</p>
+
+  <section class="product-grid" [@listStagger]="products().length">
+    <ng-container *ngIf="loading(); else productsContent">
+      <article *ngFor="let idx of skeletonCards()" class="skeleton-card product-tile" hlmCard>
+        <div hlmSkeleton class="skeleton-image"></div>
+        <div class="skeleton-lines">
+          <div hlmSkeleton class="skeleton-line w-10/12"></div>
+          <div hlmSkeleton class="skeleton-line w-7/12"></div>
+          <div hlmSkeleton class="skeleton-line w-9/12"></div>
+        </div>
+      </article>
+    </ng-container>
+
+    <ng-template #productsContent>
+      <app-product-card
+        *ngFor="let product of products(); trackBy: trackByProductId"
+        class="product-tile"
+        [product]="product"
+      ></app-product-card>
+    </ng-template>
+  </section>
+
+  <div class="infinite-loader" *ngIf="products().length > 0">
+    <span *ngIf="loadingMore()">Догружаем страницу {{ currentPage() + 1 }}...</span>
+    <button hlmBtn variant="outline" type="button" *ngIf="hasMore() && !isBusy()" (click)="loadMore()">
+      Показать еще 10
+    </button>
+    <span *ngIf="!hasMore()">Больше товаров не найдено.</span>
+  </div>
+</div>
